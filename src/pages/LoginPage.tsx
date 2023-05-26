@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../components/UI/Input";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useAuthStore } from "../store/auth";
 
 const client_id =
   "169949490168-u6gmk3q3opvpjs6ap58cqd3bcq1t64p7.apps.googleusercontent.com";
-const redirect_uri = "http://127.0.0.1:5173/main";
+const redirect_uri = "http://127.0.0.1:5173/authredirect";
 
 const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&
 response_type=token&
@@ -14,7 +15,6 @@ scope=https://www.googleapis.com/auth/userinfo.email`;
 interface loginInputsProps {
   email: string;
   password: string;
-  test: string;
 }
 const LoginPage = () => {
   const {
@@ -28,6 +28,15 @@ const LoginPage = () => {
   const googleOAuthHandler = () => {
     window.location.assign(oAuthURL);
   };
+
+  const { isLogin } = useAuthStore();
+
+  // 로그인 상태일시 메인 페이지로 이동 (메인페이지 작업중이므로 임시로 프로필로 이동)
+  // TODO: 메인 페이지로 이동하게끔 변경
+  if (isLogin) {
+    return <Navigate to="/profile"></Navigate>;
+  }
+
   return (
     <div className="flex flex-col items-center w-screen h-screen justify-evenly">
       <header className="flex justify-center text-6xl font-bold">
