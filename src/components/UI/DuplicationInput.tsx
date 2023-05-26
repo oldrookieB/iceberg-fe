@@ -1,15 +1,22 @@
 import React from "react";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import {
+  UseFormRegister,
+  FieldErrors,
+  UseFormGetValues,
+} from "react-hook-form";
 
 interface InputProps {
   label: string;
   type: string;
   register: UseFormRegister<any>;
+  getValues: UseFormGetValues<any>;
+  checkFor: string; // 중복을 확인 할 대상의 label
   errors: FieldErrors<any>;
   required: boolean;
 }
 
-const Input = (props: InputProps) => {
+// 중복 체크 Input
+const DuplicationInput = (props: InputProps) => {
   return (
     <div className="flex flex-col w-full">
       <label htmlFor={props.label} className="label">
@@ -25,6 +32,9 @@ const Input = (props: InputProps) => {
         }
         {...props.register(props.label, {
           required: { value: true, message: `${props.label}을 입력하세요.` },
+          validate: (value) =>
+            value === props.getValues(props.checkFor) ||
+            "비밀번호가 같지 않습니다.",
         })}
       />
       {props.errors[props.label] && (
@@ -38,4 +48,4 @@ const Input = (props: InputProps) => {
   );
 };
 
-export default Input;
+export default DuplicationInput;
