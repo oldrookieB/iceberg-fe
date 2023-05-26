@@ -2,6 +2,15 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../components/UI/Input";
 import { Link } from "react-router-dom";
 
+const client_id =
+  "169949490168-u6gmk3q3opvpjs6ap58cqd3bcq1t64p7.apps.googleusercontent.com";
+const redirect_uri = "http://127.0.0.1:5173/main";
+
+const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&
+response_type=token&
+redirect_uri=${redirect_uri}&
+scope=https://www.googleapis.com/auth/userinfo.email`;
+
 interface loginInputsProps {
   email: string;
   password: string;
@@ -15,6 +24,10 @@ const LoginPage = () => {
   } = useForm<loginInputsProps>();
   const onSubmit: SubmitHandler<any> = (data) => console.log(data);
   const onError: SubmitHandler<any> = (data) => console.log(data);
+
+  const googleOAuthHandler = () => {
+    window.location.assign(oAuthURL);
+  };
   return (
     <div className="flex flex-col items-center w-screen h-screen justify-evenly">
       <header className="flex justify-center text-6xl font-bold">
@@ -56,7 +69,10 @@ const LoginPage = () => {
           <button className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white ">
             <img className="w-10 h-10 " src="/img/github_icon.png" />
           </button>
-          <button className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white">
+          <button
+            onClick={googleOAuthHandler}
+            className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white"
+          >
             <img src="/img/google_icon.png" />
           </button>
           <button className="bg-white border-0 btn btn-lg btn-circle hover:bg-white">
