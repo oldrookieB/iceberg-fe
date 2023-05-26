@@ -1,16 +1,17 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../components/UI/Input";
-import { Link } from "react-router-dom";
+import DuplicationInput from "../components/UI/DuplicationInput";
 
 interface loginInputsProps {
   email: string;
   password: string;
   test: string;
 }
-const LoginPage = () => {
+const SignupPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<loginInputsProps>();
   const onSubmit: SubmitHandler<any> = (data) => console.log(data);
@@ -23,7 +24,7 @@ const LoginPage = () => {
       {/* 이메일로 로그인 */}
       <section className="flex justify-center w-full ">
         <form
-          id="loginForm"
+          id="signupForm"
           className="flex flex-col items-center gap-2 w-80"
           onSubmit={handleSubmit(onSubmit, onError)}
         >
@@ -41,38 +42,25 @@ const LoginPage = () => {
             register={register}
             required
           />
+          <DuplicationInput
+            label="비밀번호 확인"
+            type="password"
+            errors={errors}
+            register={register}
+            getValues={getValues}
+            checkFor="비밀번호"
+            required
+          />
 
           <button type="submit" className="w-full btn btn-primary my-3 ">
-            로그인
+            회원가입
           </button>
         </form>
       </section>
-
-      <section className="flex flex-col w-80 gap-4">
-        <label className="label">
-          <span>소셜 계정으로 로그인</span>
-        </label>
-        <div className="flex justify-between">
-          <button className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white ">
-            <img className="w-10 h-10 " src="/img/github_icon.png" />
-          </button>
-          <button className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white">
-            <img src="/img/google_icon.png" />
-          </button>
-          <button className="bg-white border-0 btn btn-lg btn-circle hover:bg-white">
-            <img src="/img/naver_icon.png" />
-          </button>
-        </div>
-      </section>
-
-      <section className="flex justify-between w-80 items-center">
-        <p>아직 회원이 아니신가요?</p>
-        <Link to="/signup" className="btn btn-ghost text-blue-500">
-          회원가입
-        </Link>
-      </section>
+      {/* justify 정렬을 위한 빈 공간 */}
+      <section className="h-10"></section>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
