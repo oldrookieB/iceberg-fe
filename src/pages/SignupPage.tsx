@@ -17,7 +17,7 @@ const SignupPage = () => {
   const onSubmit: SubmitHandler<any> = (data) => console.log(data);
   const onError: SubmitHandler<any> = (data) => console.log(data);
   return (
-    <div className="flex flex-col items-center w-screen h-screen justify-evenly">
+    <div className="flex flex-col items-center w-screen min-h-screen justify-evenly">
       <header className="flex justify-center text-6xl font-bold">
         Iceberg
       </header>
