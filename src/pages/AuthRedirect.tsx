@@ -60,7 +60,7 @@ const AuthRedirect = () => {
 
       await axios
         .post(
-          "https://github.com/login/oauth/access_token",
+          "/login/oauth/access_token",
           {
             client_id: VITE_GITHUB_CLIENT_ID,
             client_secret: VITE_GITHUB_CLIENT_SECRET,
