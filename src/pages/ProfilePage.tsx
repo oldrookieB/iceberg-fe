@@ -4,6 +4,15 @@ import useLogout from "../hooks/useLogout";
 import Input from "../components/UI/Input";
 import { useState } from "react";
 
+const {
+  VITE_GITHUB_CLIENT_ID,
+  VITE_GITHUB_REDIRECT_URI,
+  VITE_GITHUB_CLIENT_SECRET,
+} = import.meta.env;
+
+const github_OAuth_url = `https://github.com/login/oauth/authorize?client_id=${VITE_GITHUB_CLIENT_ID}&
+redirect_uri=${VITE_GITHUB_REDIRECT_URI}`;
+
 const ProfilePage = () => {
   const { userEmail, isLogin } = useAuthStore();
   const [isLinked, setIsLinked] = useState(false);
@@ -13,6 +22,11 @@ const ProfilePage = () => {
   if (!isLogin) {
     return <Navigate to="/"></Navigate>;
   }
+
+  const githubOAuthHandler = () => {
+    window.location.assign(github_OAuth_url);
+  };
+
   return (
     <div className="flex flex-col items-center w-screen min-h-screen ">
       <header className="w-full flex justify-between">
@@ -40,7 +54,9 @@ const ProfilePage = () => {
               </div>
             </div>
           ) : (
-            <div className="btn btn-success w-80">Github 아이디 연동하기</div>
+            <div onClick={githubOAuthHandler} className="btn btn-success w-80">
+              Github 아이디 연동하기
+            </div>
           )}
         </form>
         <button className="btn btn-ghost w-80">내 프로젝트 보기</button>
