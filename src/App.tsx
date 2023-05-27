@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/authredirect" element={<AuthRedirect />} />
+      <Route path="/authredirect/:provider" element={<AuthRedirect />} />
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );

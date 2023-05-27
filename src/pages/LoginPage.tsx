@@ -3,13 +3,11 @@ import Input from "../components/UI/Input";
 import { Link, Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
-const client_id =
-  "169949490168-u6gmk3q3opvpjs6ap58cqd3bcq1t64p7.apps.googleusercontent.com";
-const redirect_uri = "http://127.0.0.1:5173/authredirect";
+const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_REDIRECT_URI } = import.meta.env;
 
-const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&
+const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${VITE_GOOGLE_CLIENT_ID}&
 response_type=token&
-redirect_uri=${redirect_uri}&
+redirect_uri=${VITE_GOOGLE_REDIRECT_URI}&
 scope=https://www.googleapis.com/auth/userinfo.email`;
 
 interface loginInputsProps {
