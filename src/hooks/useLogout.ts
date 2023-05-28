@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/auth";
 
 const useLogout = () => {
-  const { accessToken, setAccessToken, setUserEmail, setLogout } =
+  const { accessToken, setAccessToken, setUserName, setLogout } =
     useAuthStore();
 
   const logout = async () => {
@@ -10,7 +10,7 @@ const useLogout = () => {
       .post(`https://oauth2.googleapis.com/revoke?token=${accessToken}`)
       .then(() => {
         setAccessToken("");
-        setUserEmail("");
+        setUserName("");
         setLogout();
         window.location.assign("http://127.0.0.1:5173");
       })
