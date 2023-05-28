@@ -4,6 +4,7 @@ import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
 import AuthRedirect from "./pages/AuthRedirect";
+import AddProjectPage from "./pages/AddProjectPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/authredirect/:provider" element={<AuthRedirect />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/addproject" element={<AddProjectPage />} />
     </Routes>
   );
 }

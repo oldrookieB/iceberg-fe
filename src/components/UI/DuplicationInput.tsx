@@ -1,4 +1,3 @@
-
 import {
   UseFormRegister,
   FieldErrors,
@@ -15,7 +14,7 @@ interface InputProps {
   required: boolean;
 }
 
-// 중복 체크 Input
+// checkFor에서 입력받은 label 과 같은 값을 가졌는지 확인하는 커스텀 Input
 const DuplicationInput = (props: InputProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -34,7 +33,7 @@ const DuplicationInput = (props: InputProps) => {
           required: { value: true, message: `${props.label}을 입력하세요.` },
           validate: (value) =>
             value === props.getValues(props.checkFor) ||
-            "비밀번호가 같지 않습니다.",
+            `${props.checkFor}와 같지 않습니다.`,
         })}
       />
       {props.errors[props.label] && (

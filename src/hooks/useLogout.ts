@@ -1,25 +1,40 @@
 import axios from "axios";
 import { useAuthStore } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
-  const { accessToken, setAccessToken, setUserName, setLogout } =
-    useAuthStore();
+  const authStore = useAuthStore();
+  const navigate = useNavigate();
 
-  const logout = async () => {
+  // 구글로 로그인하였을 시 로그아웃 처리
+  const googleLogout = async () => {
     await axios
-      .post(`https://oauth2.googleapis.com/revoke?token=${accessToken}`)
+      .post(
+        `https://oauth2.googleapis.com/revoke?token=${authStore.accessToken}`
+      )
       .then(() => {
-        setAccessToken("");
-        setUserName("");
-        setLogout();
-        window.location.assign("http://127.0.0.1:5173");
+        authStore.setLoginType?.("");
+        authStore.setAccessToken("");
+        authStore.setUserName("");
+        authStore.setLogout();
+        navigate("/");
       })
       .catch(() => {
         alert("로그아웃에 실패했습니다.");
       });
   };
 
-  return logout;
+  // 깃허브로 로그인하였을 시 로그아웃 처리
+  const githubLogout = () => {
+    authStore.setLoginType?.("");
+    authStore.setAccessToken("");
+    authStore.setUserName("");
+    authStore.setLogout();
+    navigate("/");
+  };
+
+  if (authStore.loginType === "google") return googleLogout;
+  else if (authStore.loginType === "github") return githubLogout;
 };
 
 export default useLogout;

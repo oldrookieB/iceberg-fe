@@ -6,7 +6,8 @@ import axios from "axios";
 const { VITE_GITHUB_CLIENT_ID, VITE_GITHUB_CLIENT_SECRET } = import.meta.env;
 
 const AuthRedirect = () => {
-  const param = useParams().provider; // OAuth 로그인 성공 후 콜백 url로 리다이렉트 될 때 어떤 OAuth인지 알려줍니다.
+  // OAuth 로그인 성공 후 콜백 url로 리다이렉트 될 때 어떤 OAuth인지 알려줍니다.
+  const param = useParams().provider;
   const navigate = useNavigate();
   const authStore = useAuthStore();
   const githubAuthStore = useGithubAuthStore();
@@ -38,7 +39,7 @@ const AuthRedirect = () => {
           authStore.setLoginType?.("google");
           authStore.setUserName(userName);
           authStore.setLogin();
-          navigate("/profile");
+          navigate("/profile", { replace: true });
         })
         .catch((e) => console.log(e));
     }
@@ -102,7 +103,7 @@ const AuthRedirect = () => {
           githubAuthStore.setUserName(userName);
           githubAuthStore.setLogin();
           githubAuthStore.setUserImage?.(userImage);
-          navigate("/profile");
+          navigate("/profile", { replace: true });
         })
         .catch((e) => console.log(e));
     }
@@ -111,6 +112,7 @@ const AuthRedirect = () => {
   useEffect(() => {
     console.log(param);
 
+    // params에 어떤 인증에서 redirect 되었는지 구분합니다.
     if (param === "google") {
       getGoogleUserInfo();
     } else if (param === "github") {

@@ -57,7 +57,7 @@ const LoginPage = () => {
         <form
           id="loginForm"
           className="flex flex-col items-center gap-2 w-80"
-          onSubmit={handleSubmit(onSubmit, onError)}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             label="아이디"
