@@ -1,7 +1,7 @@
 import { useAuthStore, useGithubAuthStore } from "../store/auth";
 import { Navigate, Link } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
-import Input from "../components/UI/Input";
+import Input from "../components/ui/Input";
 import { useState } from "react";
 
 const {
@@ -29,7 +29,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen ">
+    <div className="flex flex-col items-center w-screen min-h-screen p-10">
       <header className="w-full flex justify-between">
         <p>Iceberg</p>
         <button onClick={logout} className="btn">

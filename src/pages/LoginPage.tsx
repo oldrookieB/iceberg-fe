@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import Input from "../components/UI/Input";
+import Input from "../components/ui/Input";
 import { Link, Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
@@ -47,7 +47,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen justify-evenly">
+    <div className="flex flex-col items-center w-screen min-h-screen justify-evenly p-10">
       <header className="flex justify-center text-6xl font-bold">
         Iceberg
       </header>

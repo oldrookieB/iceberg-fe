@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import Input from "../components/UI/Input";
-import DuplicationInput from "../components/UI/DuplicationInput";
+import Input from "../components/ui/Input";
+import DuplicationInput from "../components/ui/DuplicationInput";
 
 interface loginInputsProps {
   email: string;
@@ -17,7 +17,7 @@ const SignupPage = () => {
   const onSubmit: SubmitHandler<any> = (data) => console.log(data);
   const onError: SubmitHandler<any> = (data) => console.log(data);
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen justify-evenly">
+    <div className="flex flex-col items-center w-screen min-h-screen justify-evenly p-10">
       <header className="flex justify-center text-6xl font-bold">
         Iceberg
       </header>

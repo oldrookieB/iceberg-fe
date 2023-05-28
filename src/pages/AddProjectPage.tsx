@@ -8,11 +8,26 @@ import ProjectCard from "../components/ProjectCard";
 import { useGithubAuthStore } from "../store/auth";
 import useLogout from "../hooks/useLogout";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Input from "../components/UI/Input";
+import Input from "../components/ui/Input";
+import TechButton from "../components/ui/TechButton";
 
 interface projectInputsProps {
   [inputLable: string]: string;
 }
+
+const TechStacks = [
+  { title: "react", isSelected: false },
+  { title: "python", isSelected: false },
+  { title: "js", isSelected: false },
+  { title: "html", isSelected: false },
+  { title: "css", isSelected: false },
+  { title: "node.js", isSelected: false },
+  { title: "java", isSelected: false },
+  { title: "ruby", isSelected: false },
+  { title: "angular", isSelected: false },
+  { title: "vue", isSelected: false },
+  { title: "c#", isSelected: false },
+];
 
 const AddProjectPage = () => {
   const [progress, setProgress] = useState(0);
@@ -22,6 +37,7 @@ const AddProjectPage = () => {
   const [repositoryDatas, setRepositoryDatas] = useState<any>([]);
   const [selectedRepository, setSelectedRepository] = useState("");
   const githubAuthStore = useGithubAuthStore();
+  const [techStacks, setTechStacks] = useState(TechStacks);
 
   const {
     register,
@@ -73,14 +89,31 @@ const AddProjectPage = () => {
     setSelectedRepository(select);
   };
 
+  const selectTechStackHandler = (select: string) => {
+    const newTechStacks = techStacks.map((techStack) => {
+      if (techStack.title === select) {
+        const newTechStack = {
+          title: techStack.title,
+          isSelected: !techStack.isSelected,
+        };
+
+        return newTechStack;
+      } else {
+        return techStack;
+      }
+    });
+
+    setTechStacks(newTechStacks);
+  };
+
   const selectProject = (
     <>
-      <section className="flex justify-center w-full max-w-[50%] sm:max-w-md  md:max-w-lg lg:max-w-4xl xl:max-w-7xl p-6">
+      <section className="flex flex-col gap-6 items-center w-full max-w-[50%] sm:max-w-md  md:max-w-lg lg:max-w-4xl xl:max-w-7xl">
         <div className="flex flex-col">
-          <label htmlFor="some" className="label">
+          <label htmlFor="select-project" className="label">
             <span className="label-text">추가할 프로젝트 선택</span>
           </label>
-          <div className=" w-full flex-wrap flex gap-6 xl:justify-start justify-between">
+          <div className="flex flex-wrap justify-between w-full gap-6  xl:justify-start">
             {repositoryDatas.map((repositoryData: any, index: number) => (
               <ProjectCard
                 index={index}
@@ -91,19 +124,22 @@ const AddProjectPage = () => {
             ))}
           </div>
         </div>
+        <button
+          onClick={changeProgressHandler}
+          className="btn btn-success w-80"
+        >
+          다음 단계로
+        </button>
       </section>
-      <button onClick={changeProgressHandler} className="btn btn-success w-80">
-        다음 단계로
-      </button>
     </>
   );
 
   const confirmProject = (
     <>
-      <section className="flex justify-center w-full max-w-7xl p-6">
+      <section className="flex justify-center w-1/2 ">
         <form
           id="projectForm"
-          className="flex flex-col items-center gap-2 w-80"
+          className="flex flex-col items-center w-full gap-2"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input
@@ -119,32 +155,53 @@ const AddProjectPage = () => {
             type="text"
             required
           />
+          <div className="flex flex-col w-full">
+            <label htmlFor="tech-stack" className="label">
+              <span className="label-text">기술 스택</span>
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {techStacks.map((techStack) => (
+                <TechButton
+                  key={techStack.title}
+                  onClick={selectTechStackHandler}
+                  title={techStack.title}
+                  selected={techStack.isSelected}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="w-full markdown-body">
+            <label htmlFor="readmd" className="label">
+              <span className="label-text">프로젝트 소개</span>
+            </label>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              children={readme}
+              remarkPlugins={[remarkGfm]}
+            />
+          </div>
+          <button type="submit" className="btn btn-success w-80">
+            프로젝트 추가
+          </button>
         </form>
       </section>
-      <div className="w-1/2 markdown-body ">
-        <label htmlFor="some" className="label">
-          <span className="label-text">프로젝트 readme.md</span>
-        </label>
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          children={readme}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
-      <button onClick={handleSubmit(onSubmit)} className="btn btn-success w-80">
-        프로젝트 추가
-      </button>
     </>
   );
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen">
-      <header className="w-full flex justify-between">
+    <div className="flex flex-col items-center w-screen min-h-screen p-10">
+      <header className="flex justify-between w-full">
         <p>Iceberg</p>
         <button onClick={logout} className="btn">
           로그아웃
         </button>
       </header>
+      <ul className="steps w-60">
+        <li className="step step-primary">프로젝트 선택</li>
+        <li className={progress === 1 ? "step step-primary" : "step "}>
+          프로젝트 추가
+        </li>
+      </ul>
       {progress === 0 && selectProject}
       {progress === 1 && confirmProject}
     </div>

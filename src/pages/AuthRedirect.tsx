@@ -119,7 +119,8 @@ const AuthRedirect = () => {
       getGithubUserInfo();
     }
   }, []);
-  return <div></div>;
+
+  return <></>;
 };
 
 export default AuthRedirect;
