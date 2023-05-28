@@ -1,5 +1,5 @@
 import { useAuthStore, useGithubAuthStore } from "../store/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import Input from "../components/UI/Input";
 import { useState } from "react";
@@ -67,9 +67,12 @@ const ProfilePage = () => {
         </form>
         {githubAuthStore.isLogin && (
           <>
-            <button className="btn hover:btn-ghost btn-outline w-80">
+            <Link
+              to="/addproject"
+              className="btn hover:btn-ghost btn-outline w-80"
+            >
               프로젝트 등록
-            </button>
+            </Link>
             <button className="btn hover:btn-ghost btn-outline w-80">
               내 프로젝트 보기
             </button>
