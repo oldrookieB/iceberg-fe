@@ -3,12 +3,20 @@ import Input from "../components/UI/Input";
 import { Link, Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
-const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_REDIRECT_URI } = import.meta.env;
+const {
+  VITE_GOOGLE_CLIENT_ID,
+  VITE_GOOGLE_REDIRECT_URI,
+  VITE_GITHUB_REDIRECT_URI,
+  VITE_GITHUB_CLIENT_ID,
+} = import.meta.env;
 
-const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${VITE_GOOGLE_CLIENT_ID}&
+const googleOAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${VITE_GOOGLE_CLIENT_ID}&
 response_type=token&
 redirect_uri=${VITE_GOOGLE_REDIRECT_URI}&
 scope=https://www.googleapis.com/auth/userinfo.email`;
+
+const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${VITE_GITHUB_CLIENT_ID}&
+redirect_uri=${VITE_GITHUB_REDIRECT_URI}`;
 
 interface loginInputsProps {
   email: string;
@@ -24,7 +32,11 @@ const LoginPage = () => {
   const onError: SubmitHandler<any> = (data) => console.log(data);
 
   const googleOAuthHandler = () => {
-    window.location.assign(oAuthURL);
+    window.location.assign(googleOAuthUrl);
+  };
+
+  const githubOAuthHandler = () => {
+    window.location.assign(githubOAuthUrl);
   };
 
   const { isLogin } = useAuthStore();
@@ -48,7 +60,7 @@ const LoginPage = () => {
           onSubmit={handleSubmit(onSubmit, onError)}
         >
           <Input
-            label="이메일"
+            label="아이디"
             type="text"
             errors={errors}
             register={register}
@@ -73,7 +85,10 @@ const LoginPage = () => {
           <span>소셜 계정으로 로그인</span>
         </label>
         <div className="flex justify-between">
-          <button className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white ">
+          <button
+            onClick={githubOAuthHandler}
+            className="bg-white border-gray-200 btn btn-lg btn-circle hover:border-gray-200 hover:bg-white "
+          >
             <img className="w-10 h-10 " src="/img/github_icon.png" />
           </button>
           <button
