@@ -26,7 +26,7 @@ const SignupPage = () => {
         <form
           id="signupForm"
           className="flex flex-col items-center gap-2 w-80"
-          onSubmit={handleSubmit(onSubmit, onError)}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             label="이메일"
