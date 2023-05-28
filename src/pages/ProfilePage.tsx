@@ -65,7 +65,19 @@ const ProfilePage = () => {
             </div>
           )}
         </form>
-        <button className="btn btn-ghost w-80">내 프로젝트 보기</button>
+        {githubAuthStore.isLogin && (
+          <>
+            <button className="btn hover:btn-ghost btn-outline w-80">
+              프로젝트 등록
+            </button>
+            <button className="btn hover:btn-ghost btn-outline w-80">
+              내 프로젝트 보기
+            </button>
+          </>
+        )}
+        <button className="btn hover:btn-ghost btn-outline w-80">
+          좋아요 한 프로젝트 보기
+        </button>
       </section>
     </div>
   );
