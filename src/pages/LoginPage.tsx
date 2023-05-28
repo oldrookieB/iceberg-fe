@@ -19,8 +19,7 @@ const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${VIT
 redirect_uri=${VITE_GITHUB_REDIRECT_URI}`;
 
 interface loginInputsProps {
-  email: string;
-  password: string;
+  [inputLable: string]: string;
 }
 const LoginPage = () => {
   const {
@@ -28,8 +27,8 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<loginInputsProps>();
-  const onSubmit: SubmitHandler<any> = (data) => console.log(data);
-  const onError: SubmitHandler<any> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<loginInputsProps> = (data) => console.log(data);
+  const onError: SubmitHandler<loginInputsProps> = (data) => console.log(data);
 
   const googleOAuthHandler = () => {
     window.location.assign(googleOAuthUrl);
