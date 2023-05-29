@@ -10,6 +10,8 @@ import useLogout from "../hooks/useLogout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../components/ui/Input";
 import TechButton from "../components/ui/TechButton";
+import { Navigate } from "react-router-dom";
+import { useAuthStore } from "../store/auth";
 
 interface projectInputsProps {
   [inputLable: string]: string;
@@ -38,6 +40,13 @@ const AddProjectPage = () => {
   const [selectedRepository, setSelectedRepository] = useState("");
   const githubAuthStore = useGithubAuthStore();
   const [techStacks, setTechStacks] = useState(TechStacks);
+
+  const authStore = useAuthStore();
+
+  // 로그인 상태가 아닐 시 로그인 페이지로 이동
+  if (!authStore.isLogin) {
+    return <Navigate to="/"></Navigate>;
+  }
 
   const {
     register,
@@ -106,6 +115,7 @@ const AddProjectPage = () => {
     setTechStacks(newTechStacks);
   };
 
+  // progress 0 : 프로젝트 선택 단계
   const selectProject = (
     <>
       <section className="flex flex-col gap-6 items-center w-full max-w-[50%] sm:max-w-md  md:max-w-lg lg:max-w-4xl xl:max-w-7xl">
@@ -134,6 +144,7 @@ const AddProjectPage = () => {
     </>
   );
 
+  // progress 1 : 프로젝트 추가 단계
   const confirmProject = (
     <>
       <section className="flex justify-center w-1/2 ">

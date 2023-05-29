@@ -3,7 +3,7 @@ import React from "react";
 interface TechButtonProps {
   title: string;
   selected?: boolean;
-  onClick: (select: string) => void;
+  onClick?: (select: string) => void;
 }
 
 const TechStyles = [
@@ -30,15 +30,16 @@ const TechButton = (props: TechButtonProps) => {
   let btnStyle = {};
 
   if (props.selected) {
-    btnClass = `btn border-none`;
+    btnClass = `btn `;
     btnStyle = {
       background: tech.bgColor,
       color: tech.txtColor,
+      borderColor: tech.bgColor,
     };
   }
 
   const onClickHandler = () => {
-    props.onClick(props.title);
+    props.onClick?.(props.title);
   };
   return (
     <div onClick={onClickHandler} style={btnStyle} className={btnClass}>

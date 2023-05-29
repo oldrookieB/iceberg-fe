@@ -117,6 +117,8 @@ const AuthRedirect = () => {
       getGoogleUserInfo();
     } else if (param === "github") {
       getGithubUserInfo();
+    } else {
+      navigate("/", { replace: true });
     }
   }, []);
 
