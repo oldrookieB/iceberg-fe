@@ -6,7 +6,7 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
   return (
-    <section className="flex flex-col w-full h-screen max-w-[1440px] bg-white overflow-y-auto">
+    <section className="flex flex-col w-full h-screen max-w-screen bg-white overflow-y-auto">
       {props.children}
     </section>
   );

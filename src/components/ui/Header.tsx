@@ -11,10 +11,8 @@ const Header = () => {
     <a className="btn btn-ghost normal-case text-2xl">IceBerg Project</a>
   </div>
   <div className="flex-none">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>로그인</a></li>
-      <li><a>프로필</a></li>
-    </ul>
+  <button className="btn btn-ghost">로그인</button>
+  <button className="btn btn-ghost">프로필</button>
   </div>
 </div>
   );

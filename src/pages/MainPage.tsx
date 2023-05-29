@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import Layout from '../components/ui/Layout';
 import Header from '../components/ui/Header';
 import SearchBar from '../components/ui/SearchBar';
@@ -27,15 +26,16 @@ const MainPage = () => {
             <div className='mt-12' />
             <SearchBar/>
             <div className='mt-5'/>
-            <button className="btn btn-ghost w-24 text-lg">Likes</button>
-            <div className='flex flex-wrap justify-center mt-3'>
+            <a className='text-lg font-medium mx-5'>Likes</a>
+            <div className='flex flex-wrap justify-start ml-2 mt-3'>
+                <Card/>
                 <Card/>
                 <Card/>
                 <Card/>
                 <Card/>
             </div>
-            <button className="btn btn-ghost w-40 text-lg">TechStack</button>
-            <div className='flex flex-row flex-wrap mx-10'>
+            <a className='text-lg font-medium mx-5'>TechStack</a>
+            <div className='flex flex-row flex-wrap mx-10 mt-3'>
                 {TechStacks.map((tech, index) => (
                     <TechButton
                         key={index}
@@ -45,7 +45,7 @@ const MainPage = () => {
                     />
             ))}
             </div>
-            <div className='flex flex-wrap justify-center mt-5'>
+            <div className='flex flex-wrap justify-start ml-2 mt-5'>
                 <Card/>
                 <Card/>
                 <Card/>
@@ -57,7 +57,7 @@ const MainPage = () => {
                 <Card/>
                 <Card/>
                 <Card/>
-                <Card/>
+         
             </div>
        </Layout>
     );
