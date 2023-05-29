@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
 import AuthRedirect from "./pages/AuthRedirect";
 import AddProjectPage from "./pages/AddProjectPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/authredirect/:provider" element={<AuthRedirect />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/addproject" element={<AddProjectPage />} />
+      <Route path="/project/:id" element={<ProjectDetailPage />} />
     </Routes>
   );
 }
