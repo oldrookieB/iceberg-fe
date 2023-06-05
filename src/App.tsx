@@ -1,18 +1,22 @@
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
-import MyProjectPage from "./pages/MyProjectPage";
+import ProfilePage from "./pages/ProfilePage";
+import AuthRedirect from "./pages/AuthRedirect";
+import AddProjectPage from "./pages/AddProjectPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 function App() {
   return (
-    <div>   
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/myproject" element={<MyProjectPage />} />
-        </Routes>
-      </Router>
-    </div>
-
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/authredirect/:provider" element={<AuthRedirect />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/addproject" element={<AddProjectPage />} />
+      <Route path="/project/:id" element={<ProjectDetailPage />} />
+    </Routes>
   );
 }
 

@@ -1,3 +1,14 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+ol,
+ul {
+  list-style: disc;
+}
