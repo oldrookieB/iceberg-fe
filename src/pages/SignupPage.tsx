@@ -4,10 +4,8 @@ import DuplicationInput from "../components/ui/DuplicationInput";
 import { useAuthStore } from "../store/auth";
 import { Navigate } from "react-router-dom";
 
-interface loginInputsProps {
-  email: string;
-  password: string;
-  test: string;
+interface SignupInputs {
+  [inputLable: string]: string;
 }
 const SignupPage = () => {
   const {
@@ -15,9 +13,9 @@ const SignupPage = () => {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<loginInputsProps>();
-  const onSubmit: SubmitHandler<any> = (data) => console.log(data);
-  const onError: SubmitHandler<any> = (data) => console.log(data);
+  } = useForm<SignupInputs>();
+  const onSubmit: SubmitHandler<SignupInputs> = (data) => console.log(data);
+  const onError: SubmitHandler<SignupInputs> = (data) => console.log(data);
 
   const { isLogin } = useAuthStore();
 
@@ -40,7 +38,7 @@ const SignupPage = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input
-            label="이메일"
+            label="아이디"
             type="text"
             errors={errors}
             register={register}

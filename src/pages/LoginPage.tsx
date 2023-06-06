@@ -2,40 +2,27 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../components/ui/Input";
 import { Link, Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
+import { GOOGLE_OAUTH_URL, GTIHUB_OAUTH_URL } from "../constants/authUrl";
 
-const {
-  VITE_GOOGLE_CLIENT_ID,
-  VITE_GOOGLE_REDIRECT_URI,
-  VITE_GITHUB_REDIRECT_URI,
-  VITE_GITHUB_CLIENT_ID,
-} = import.meta.env;
-
-const googleOAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${VITE_GOOGLE_CLIENT_ID}&
-response_type=token&
-redirect_uri=${VITE_GOOGLE_REDIRECT_URI}&
-scope=https://www.googleapis.com/auth/userinfo.email`;
-
-const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${VITE_GITHUB_CLIENT_ID}&
-redirect_uri=${VITE_GITHUB_REDIRECT_URI}`;
-
-interface loginInputsProps {
+interface LoginInputs {
   [inputLable: string]: string;
 }
+
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginInputsProps>();
-  const onSubmit: SubmitHandler<loginInputsProps> = (data) => console.log(data);
-  const onError: SubmitHandler<loginInputsProps> = (data) => console.log(data);
+  } = useForm<LoginInputs>();
+  const onSubmit: SubmitHandler<LoginInputs> = (data) => console.log(data);
+  const onError: SubmitHandler<LoginInputs> = (data) => console.log(data);
 
   const googleOAuthHandler = () => {
-    window.location.assign(googleOAuthUrl);
+    window.location.assign(GOOGLE_OAUTH_URL);
   };
 
   const githubOAuthHandler = () => {
-    window.location.assign(githubOAuthUrl);
+    window.location.assign(GTIHUB_OAUTH_URL);
   };
 
   const { isLogin } = useAuthStore();

@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { useAuthStore } from "../store/auth";
 import { Navigate } from "react-router-dom";
+import Header from "../components/ui/Header";
 
 const dummyReadme = `# Iceberg Project
 ### SW프로젝트 올드루키B팀
@@ -49,13 +50,8 @@ const ProjectDetailPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen p-10">
-      <header className="flex justify-between w-full">
-        <p>Iceberg</p>
-        <button onClick={logout} className="btn">
-          로그아웃
-        </button>
-      </header>
+    <div className="flex flex-col items-center w-screen min-h-screen">
+      <Header />
       <section className="flex flex-col items-center w-1/2 gap-4">
         <h1 className="text-6xl font-bold ">프로젝트 이름</h1>
         <div className="flex gap-4">

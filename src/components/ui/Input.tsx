@@ -1,11 +1,15 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
+interface Input {
+  [inputLabel: string]: string;
+}
+
 interface InputProps {
-  label: string;
+  label: string; // 해당 input의 이름입니다.
   type: string;
-  register?: UseFormRegister<any>;
-  errors?: FieldErrors<any>;
-  defaultValue?: string;
+  register?: UseFormRegister<Input>;
+  errors?: FieldErrors<Input>;
+  defaultValue?: string; // defaultValue가 존재하면 조작불가능한 input입니다.
   required: boolean;
 }
 
@@ -25,7 +29,10 @@ const Input = (props: InputProps) => {
               : "w-full  input input-bordered "
           }
           {...props.register(props.label, {
-            required: { value: true, message: `${props.label}을 입력하세요.` },
+            required: {
+              value: true,
+              message: `${props.label}를 입력하세요.`,
+            },
           })}
         />
         {props.errors[props.label] && (

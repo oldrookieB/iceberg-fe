@@ -3,15 +3,8 @@ import { Navigate, Link } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import Input from "../components/ui/Input";
 import { useState } from "react";
-
-const {
-  VITE_GITHUB_CLIENT_ID,
-  VITE_GITHUB_REDIRECT_URI,
-  VITE_GITHUB_CLIENT_SECRET,
-} = import.meta.env;
-
-const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${VITE_GITHUB_CLIENT_ID}&
-redirect_uri=${VITE_GITHUB_REDIRECT_URI}`;
+import Header from "../components/ui/Header";
+import { GTIHUB_OAUTH_URL } from "../constants/authUrl";
 
 const ProfilePage = () => {
   const authStore = useAuthStore();
@@ -25,17 +18,12 @@ const ProfilePage = () => {
   }
 
   const githubOAuthHandler = () => {
-    window.location.assign(githubOAuthUrl);
+    window.location.assign(GTIHUB_OAUTH_URL);
   };
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen p-10">
-      <header className="w-full flex justify-between">
-        <p>Iceberg</p>
-        <button onClick={logout} className="btn">
-          로그아웃
-        </button>
-      </header>
+    <div className="flex flex-col items-center w-screen min-h-screen">
+      <Header />
 
       <section className="flex grow flex-col w-full h-full items-center justify-center  gap-4">
         <form id="loginForm" className="flex flex-col items-center gap-4 w-80">

@@ -12,6 +12,7 @@ import Input from "../components/ui/Input";
 import TechButton from "../components/ui/TechButton";
 import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
+import Header from "../components/ui/Header";
 
 interface projectInputsProps {
   [inputLable: string]: string;
@@ -78,12 +79,6 @@ const AddProjectPage = () => {
   useEffect(() => {
     getRepositoryData();
   }, []);
-
-  // return (
-  //   <div className="markdown-body">
-  //     <ReactMarkdown children={readme} remarkPlugins={[remarkGfm]} />
-  //   </div>
-  // );
 
   let selectedRepositoryData = repositoryDatas.filter(
     (repositoryData: any) => repositoryData.name === selectedRepository
@@ -200,13 +195,8 @@ const AddProjectPage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen p-10">
-      <header className="flex justify-between w-full">
-        <p>Iceberg</p>
-        <button onClick={logout} className="btn">
-          로그아웃
-        </button>
-      </header>
+    <div className="flex flex-col items-center w-screen min-h-screen">
+      <Header />
       <ul className="steps w-60">
         <li className="step step-primary">프로젝트 선택</li>
         <li className={progress === 1 ? "step step-primary" : "step "}>
