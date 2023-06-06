@@ -1,5 +1,6 @@
 import { useAuthStore, useGithubAuthStore } from "../../store/auth";
 import { GTIHUB_OAUTH_URL } from "../../constants/authUrl";
+import DisabledInput from "../ui/DisabledInput";
 
 const UserProfile = () => {
   const authStore = useAuthStore();
@@ -11,18 +12,8 @@ const UserProfile = () => {
 
   return (
     <section className="flex flex-col w-full h-full gap-4">
-      <div className="flex flex-col w-full">
-        <label className="label">
-          <span className="label-text">아이디</span>
-        </label>
-        <input
-          disabled
-          defaultValue={authStore.userName}
-          id="아이디"
-          type="text"
-          className="w-full  input input-bordered"
-        />
-      </div>
+      <DisabledInput label="아이디" defaultValue={authStore.userName} />
+
       {githubAuthStore.isLogin ? (
         <div className="flex flex-col w-full">
           <label className="label">
