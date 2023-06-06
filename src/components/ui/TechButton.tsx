@@ -3,7 +3,7 @@ import { TECHSTACKS } from "../../constants/techStacks";
 
 interface TechButtonProps {
   title: string;
-  selected?: boolean;
+  isSelected?: boolean;
   onClick?: (select: string) => void;
 }
 
@@ -16,7 +16,7 @@ const TechButton = (props: TechButtonProps) => {
     "btn btn-outline border-gray-300 hover:bg-white hover:text-black";
   let btnStyle = {};
 
-  if (props.selected) {
+  if (props.isSelected) {
     btnClass = "btn";
     btnStyle = {
       background: techstack.bgColor,

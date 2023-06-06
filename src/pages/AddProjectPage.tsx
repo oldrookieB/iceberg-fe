@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { Base64 } from "js-base64";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/addproject/ProjectCard";
 import { useGithubAuthStore } from "../store/auth";
 import useLogout from "../hooks/useLogout";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,24 +13,16 @@ import TechButton from "../components/ui/TechButton";
 import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import Header from "../components/ui/Header";
+import { TECHSTACKS } from "../constants/techStacks";
 
 interface projectInputsProps {
   [inputLable: string]: string;
 }
 
-const TechStacks = [
-  { title: "react", isSelected: false },
-  { title: "python", isSelected: false },
-  { title: "js", isSelected: false },
-  { title: "html", isSelected: false },
-  { title: "css", isSelected: false },
-  { title: "node.js", isSelected: false },
-  { title: "java", isSelected: false },
-  { title: "ruby", isSelected: false },
-  { title: "angular", isSelected: false },
-  { title: "vue", isSelected: false },
-  { title: "c#", isSelected: false },
-];
+interface techStacks {
+  title: string;
+  isSelected: boolean;
+}
 
 const AddProjectPage = () => {
   const [progress, setProgress] = useState(0);
@@ -40,7 +32,11 @@ const AddProjectPage = () => {
   const [repositoryDatas, setRepositoryDatas] = useState<any>([]);
   const [selectedRepository, setSelectedRepository] = useState("");
   const githubAuthStore = useGithubAuthStore();
-  const [techStacks, setTechStacks] = useState(TechStacks);
+  const [techStacks, setTechStacks] = useState<techStacks[]>(
+    TECHSTACKS.map((techStack) => {
+      return { title: techStack.title, isSelected: false };
+    })
+  );
 
   const authStore = useAuthStore();
 
@@ -115,7 +111,7 @@ const AddProjectPage = () => {
     <>
       <section className="flex flex-col gap-6 items-center w-full max-w-[50%] sm:max-w-md  md:max-w-lg lg:max-w-4xl xl:max-w-7xl">
         <div className="flex flex-col">
-          <label htmlFor="select-project" className="label">
+          <label className="label">
             <span className="label-text">추가할 프로젝트 선택</span>
           </label>
           <div className="flex flex-wrap justify-between w-full gap-6  xl:justify-start">
@@ -171,7 +167,7 @@ const AddProjectPage = () => {
                   key={techStack.title}
                   onClick={selectTechStackHandler}
                   title={techStack.title}
-                  selected={techStack.isSelected}
+                  isSelected={techStack.isSelected}
                 />
               ))}
             </div>

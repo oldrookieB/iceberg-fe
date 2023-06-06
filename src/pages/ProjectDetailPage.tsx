@@ -61,7 +61,7 @@ const ProjectDetailPage = () => {
         </div>
         <div className="flex gap-2">
           {["react", "js", "vue"].map((techStack) => (
-            <TechButton key={techStack} title={techStack} selected />
+            <TechButton key={techStack} title={techStack} isSelected />
           ))}
         </div>
         <div className="flex items-center gap-4">
