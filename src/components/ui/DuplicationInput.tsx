@@ -4,18 +4,22 @@ import {
   UseFormGetValues,
 } from "react-hook-form";
 
-interface InputProps {
+interface DuplicationInput {
+  [inputLabel: string]: string;
+}
+
+interface DuplicationInputProps {
   label: string;
   type: string;
-  register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>;
+  register: UseFormRegister<DuplicationInput>;
+  getValues: UseFormGetValues<DuplicationInput>;
   checkFor: string; // 중복을 확인 할 대상의 label
-  errors: FieldErrors<any>;
+  errors: FieldErrors<DuplicationInput>;
   required: boolean;
 }
 
 // checkFor에서 입력받은 label 과 같은 값을 가졌는지 확인하는 커스텀 Input
-const DuplicationInput = (props: InputProps) => {
+const DuplicationInput = (props: DuplicationInputProps) => {
   return (
     <div className="flex flex-col w-full">
       <label htmlFor={props.label} className="label">
