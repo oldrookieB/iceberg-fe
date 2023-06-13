@@ -22,11 +22,6 @@ const AddProjectPage = () => {
 
   const authStore = useAuthStore();
 
-  // 로그인 상태가 아닐 시 로그인 페이지로 이동
-  if (!authStore.isLogin) {
-    return <Navigate to="/"></Navigate>;
-  }
-
   const setRepository = async () => {
     const response = await getRepositoryData(githubAuthStore.userName);
 
