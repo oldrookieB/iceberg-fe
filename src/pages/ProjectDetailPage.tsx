@@ -1,5 +1,4 @@
-import React from "react";
-import useLogout from "../hooks/useLogout";
+
 import TechButton from "../components/ui/TechButton";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

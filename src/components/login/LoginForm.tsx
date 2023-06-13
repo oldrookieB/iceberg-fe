@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../ui/Input";
+import { defaultLogin } from "../../api/user";
 
 interface LoginInputs {
   [inputLable: string]: string;
@@ -11,7 +12,7 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginInputs>();
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginInputs> = (data) => defaultLogin(data);
   const onError: SubmitHandler<LoginInputs> = (data) => console.log(data);
   return (
     <section className="flex justify-center w-full ">
