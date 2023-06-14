@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../ui/Input";
 import DuplicationInput from "../ui/DuplicationInput";
+import { defaultSignup } from "../../api/user";
 
 interface SignupInputs {
   [inputLable: string]: string;
@@ -13,7 +14,7 @@ const SignupForm = () => {
     getValues,
     formState: { errors },
   } = useForm<SignupInputs>();
-  const onSubmit: SubmitHandler<SignupInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SignupInputs> = (data) => defaultSignup(data);
   const onError: SubmitHandler<SignupInputs> = (data) => console.log(data);
 
   return (
