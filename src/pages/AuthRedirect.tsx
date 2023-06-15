@@ -4,7 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getGithubOauthToken,
   getGithubUserInfo,
-  googleOauthLogin,
+  getGoogleOauthToken,
+  getGoogleUserInfo,
 } from "../api/oauth";
 
 const AuthRedirect = () => {
@@ -17,14 +18,23 @@ const AuthRedirect = () => {
   // 구글 OAuth 로그인 성공 시 AccessToken 및 유저 정보를 가져옵니다.
   const googleRedirect = async () => {
     const url = new URL(window.location.href);
-    // hash를 떼어주고
-    const hash = url.hash;
-    if (hash) {
+    // url 파라미터값 추출
+    const param = url.searchParams;
+    if (param) {
       // 토큰만 떼어주면된다.
-      const accessToken = hash.split("=")[1].split("&")[0];
+      const code = param.get("code");
+
+      let accessToken = "";
 
       try {
-        const response = await googleOauthLogin(accessToken);
+        const response = await getGoogleOauthToken(code);
+        accessToken = response.data.access_token;
+      } catch (e) {
+        console.log(e);
+      }
+
+      try {
+        const response = await getGoogleUserInfo(accessToken);
 
         const userName = response.data.email;
         authStore.setAccessToken(accessToken);
