@@ -8,6 +8,7 @@ const {
   VITE_GITHUB_CLIENT_SECRET,
 } = import.meta.env;
 
+// code를 입력받아 API 호출 후 응답으로 액세스 토큰을 반환합니다.
 export const getGoogleOauthToken = async (code: string | null) => {
   const response = await axios.post("https://oauth2.googleapis.com/token", {
     client_id: VITE_GOOGLE_CLIENT_ID,
@@ -20,6 +21,7 @@ export const getGoogleOauthToken = async (code: string | null) => {
   return response;
 };
 
+// 액세스토큰을 입력받아 API 호출 후 응답으로 유저 정보를 반환합니다.
 export const getGoogleUserInfo = async (accessToken: string) => {
   const response = await axios.get(
     "https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + accessToken,
