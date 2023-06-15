@@ -1,9 +1,26 @@
 import axios from "axios";
 
-const { VITE_GITHUB_CLIENT_ID, VITE_GITHUB_CLIENT_SECRET } = import.meta.env;
+const {
+  VITE_GOOGLE_CLIENT_ID,
+  VITE_GOOGLE_CLIENT_SECRET,
+  VITE_GOOGLE_REDIRECT_URI,
+  VITE_GITHUB_CLIENT_ID,
+  VITE_GITHUB_CLIENT_SECRET,
+} = import.meta.env;
 
-//
-export const googleOauthLogin = async (accessToken: string) => {
+export const getGoogleOauthToken = async (code: string | null) => {
+  const response = await axios.post("https://oauth2.googleapis.com/token", {
+    client_id: VITE_GOOGLE_CLIENT_ID,
+    client_secret: VITE_GOOGLE_CLIENT_SECRET,
+    code: code,
+    grant_type: "authorization_code",
+    redirect_uri: VITE_GOOGLE_REDIRECT_URI,
+  });
+
+  return response;
+};
+
+export const getGoogleUserInfo = async (accessToken: string) => {
   const response = await axios.get(
     "https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + accessToken,
     {
