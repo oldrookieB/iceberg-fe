@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import ReadMe from "./ReadMe";
 import DisabledInput from "../ui/DisabledInput";
 import SelectTechStack from "./SelectTechStack";
+import ReadMeSkeleton from "./ReadMeSkeleton";
 
 interface ProjectInputs {
   [inputLable: string]: string;
