@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.notosanskr * {
+* {
   font-family: "Noto Sans KR", sans-serif;
 }
 
