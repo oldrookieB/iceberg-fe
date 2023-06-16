@@ -1,10 +1,38 @@
+import React, { useState } from 'react';
 import Layout from '../components/ui/Layout';
 import Header from '../components/ui/Header';
 import SearchBar from '../components/ui/SearchBar';
 import Card from '../components/list/Card';
 import TechButton from '../components/ui/TechButton';
 
-const MainPage = () => {
+const MainPage = (props) => {
+    const cardData = [
+        {
+            id: 1,
+            title: "my-awesome-project",
+            description: "This is an amazing project.",
+          },
+          {
+            id: 2,
+            title: "react-app",
+            description: "A React application for frontend development.",
+          },
+          {
+            id: 3,
+            title: "python-scripts",
+            description: "Collection of useful Python scripts.",
+          },
+          {
+            id: 4,
+            title: "portfolio-website",
+            description: "My personal portfolio website.",
+          },
+          {
+            id: 5,
+            title: "node-api",
+            description: "A Node.js API server for backend development.",
+          },
+    ];
 
     const TechStacks = [
         { title: "React", bgColor: "#61dafb", txtColor: "black" },
@@ -28,11 +56,14 @@ const MainPage = () => {
             <div className='mt-5'/>
             <a className='text-lg font-medium mx-5'>Likes</a>
             <div className='flex flex-wrap justify-start ml-2 mt-3'>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+              {cardData.map((card) => (
+                <Card
+                    key={card.id}
+                    id={card.id}
+                    title={card.title}
+                    description={card.description}
+                    />
+              ))}
             </div>
             <a className='text-lg font-medium mx-5'>TechStack</a>
             <div className='flex flex-row flex-wrap mx-10 mt-3'>
@@ -46,18 +77,14 @@ const MainPage = () => {
             ))}
             </div>
             <div className='flex flex-wrap justify-start ml-2 mt-5'>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-         
+            {cardData.map((card) => (
+                <Card
+                    key={card.id}
+                    id={card.id}
+                    title={card.title}
+                    description={card.description}
+                    />
+              ))}
             </div>
        </Layout>
     );
