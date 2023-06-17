@@ -7,6 +7,8 @@ interface SelectProjectProps {
 }
 
 const SelectProject = (props: SelectProjectProps) => {
+
+
   return (
     <section className="flex flex-col gap-6 items-center w-full max-w-[50%] sm:max-w-md  md:max-w-lg lg:max-w-4xl xl:max-w-7xl">
       <div className="flex flex-col">

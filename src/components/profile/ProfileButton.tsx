@@ -13,9 +13,13 @@ const ProfileButton = () => {
           >
             프로젝트 등록
           </Link>
-          <button className="btn hover:btn-ghost btn-outline w-full">
+
+          <Link
+            to="/myproject"
+            className="btn hover:btn-ghost btn-outline w-full"
+          >
             내 프로젝트 보기
-          </button>
+          </Link>
         </>
       )}
       <button className="btn hover:btn-ghost btn-outline w-full">
