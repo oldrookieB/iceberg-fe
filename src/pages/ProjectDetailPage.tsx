@@ -1,4 +1,5 @@
 import TechButton from "../components/ui/TechButton";
+import Layout from "../components/ui/Layout";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -9,7 +10,7 @@ import * as DUMMY from "../constants/dummyProject";
 
 const ProjectDetailPage = () => {
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen">
+    <Layout>
       <Header />
       <section className="flex flex-col items-center w-1/2 gap-4">
         <h1 className="text-6xl font-bold ">{DUMMY.PROJECT_NAME}</h1>
@@ -40,7 +41,7 @@ const ProjectDetailPage = () => {
           />
         </div>
       </section>
-    </div>
+    </Layout>
   );
 };
 

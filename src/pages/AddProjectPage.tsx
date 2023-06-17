@@ -1,12 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { Base64 } from "js-base64";
 import { useGithubAuthStore } from "../store/auth";
 
-import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import Header from "../components/ui/Header";
+import Layout from "../components/ui/Layout";
 import SelectProject from "../components/addproject/SelectProject";
 import ConfirmProject from "../components/addproject/ConfirmProject";
 import Progress from "../components/addproject/Progress";
@@ -46,7 +44,7 @@ const AddProjectPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen">
+    <Layout>
       <Header />
 
       <Progress progress={progress} />
@@ -67,7 +65,7 @@ const AddProjectPage = () => {
           selectedRepository={selectedRepository}
         />
       )}
-    </div>
+    </Layout>
   );
 };
 

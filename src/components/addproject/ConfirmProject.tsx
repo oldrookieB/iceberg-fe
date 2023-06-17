@@ -27,7 +27,7 @@ const ConfirmProject = (props: ConfirmProjectProps) => {
   )[0];
 
   return (
-    <section className="flex justify-center w-1/2 ">
+    <section className="flex justify-center w-1/2 py-4 ">
       <form
         id="projectForm"
         className="flex flex-col items-center w-full gap-2"

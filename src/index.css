@@ -12,3 +12,8 @@ ol,
 ul {
   list-style: disc;
 }
+
+/* 100vw 설정 시 수직 스크롤바가 생기면 수평 스크롤바가 생기므로 숨김처리 */
+body {
+  overflow-x: hidden;
+}
