@@ -47,6 +47,7 @@ export const useGithubAuthStore = create<AuthStoreProps>(
       isLogin: false,
       accessToken: "",
       userName: "",
+      userImage: "",
       setLogin: () => set({ isLogin: true }),
       setLogout: () => set({ isLogin: false }),
       setUserName: (newUserName) => set({ userName: newUserName }),

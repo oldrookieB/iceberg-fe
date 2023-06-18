@@ -1,10 +1,17 @@
 import axios from "axios";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore, useGithubAuthStore } from "../store/auth";
 import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
   const authStore = useAuthStore();
   const navigate = useNavigate();
+
+  const clearAuthStore = () => {
+    authStore.setLoginType?.("");
+    authStore.setAccessToken("");
+    authStore.setUserName("");
+    authStore.setLogout();
+  };
 
   // 구글로 로그인하였을 시 로그아웃 처리
   const googleLogout = async () => {
@@ -13,10 +20,7 @@ const useLogout = () => {
         `https://oauth2.googleapis.com/revoke?token=${authStore.accessToken}`
       )
       .then(() => {
-        authStore.setLoginType?.("");
-        authStore.setAccessToken("");
-        authStore.setUserName("");
-        authStore.setLogout();
+        clearAuthStore();
         navigate("/");
       })
       .catch(() => {
@@ -26,10 +30,7 @@ const useLogout = () => {
 
   // 깃허브로 로그인하였을 시 로그아웃 처리
   const githubLogout = () => {
-    authStore.setLoginType?.("");
-    authStore.setAccessToken("");
-    authStore.setUserName("");
-    authStore.setLogout();
+    clearAuthStore();
     navigate("/");
   };
 

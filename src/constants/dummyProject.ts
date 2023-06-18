@@ -32,7 +32,7 @@ export const README = `# Iceberg Project
 
 export const PROJECT_NAME = "Dummy Project";
 export const USERNAME = "username1";
-export const STAR = 123;
-export const FORK = 456;
-export const WATCHING = 789;
+export const STAR = 0;
+export const FORK = 0;
+export const WATCHING = 2;
 export const TECHSTACK = ["react", "js", "vue"];

@@ -22,9 +22,6 @@ const ProfileButton = () => {
           </Link>
         </>
       )}
-      <button className="btn hover:btn-ghost btn-outline w-full">
-        좋아요 한 프로젝트 보기
-      </button>
     </section>
   );
 };

@@ -41,6 +41,14 @@ const ConfirmProject = (props: ConfirmProjectProps) => {
           required
         />
 
+        <Input
+          label="프로젝트 설명"
+          type="text"
+          errors={errors}
+          register={register}
+          required
+        />
+
         <DisabledInput
           label="레포지토리 이름"
           defaultValue={props.selectedRepository}

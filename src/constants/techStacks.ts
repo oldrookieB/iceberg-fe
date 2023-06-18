@@ -1,5 +1,8 @@
 export const TECHSTACKS = [
   { title: "react", bgColor: "#61dafb", txtColor: "black" },
+  { title: "react-native", bgColor: "#61dafb", txtColor: "black" },
+  { title: "kotlin", bgColor: "#8052ff", txtColor: "white" },
+  { title: "django", bgColor: "#113e2e", txtColor: "white" },
   { title: "python", bgColor: "#3676AB", txtColor: "white" },
   { title: "js", bgColor: "#f7df1e", txtColor: "black" },
   { title: "html", bgColor: "#e34f26", txtColor: "white" },
@@ -10,4 +13,5 @@ export const TECHSTACKS = [
   { title: "angular", bgColor: "#dd0031", txtColor: "white" },
   { title: "vue", bgColor: "#4fc08d", txtColor: "white" },
   { title: "c#", bgColor: "#68217a", txtColor: "white" },
+  { title: "spring", bgColor: "#68bd43", txtColor: "white" },
 ];
