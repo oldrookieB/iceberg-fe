@@ -29,7 +29,7 @@ const Input = (props: InputProps) => {
         {...props.register(props.label, {
           required: {
             value: true,
-            message: `${props.label}를 입력하세요.`,
+            message: `${props.label}을(를) 입력하세요.`,
           },
         })}
       />
