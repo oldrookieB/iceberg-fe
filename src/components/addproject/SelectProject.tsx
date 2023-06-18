@@ -9,7 +9,7 @@ interface SelectProjectProps {
 
 const SelectProject = (props: SelectProjectProps) => {
   return (
-    <section className="flex flex-col gap-6 items-center w-full max-w-[382px] lg:max-w-4xl xl:max-w-7xl py-4">
+    <section className="flex flex-col gap-6 items-center w-screen max-w-[382px] lg:max-w-4xl xl:max-w-7xl py-4">
       <div className="flex flex-col">
         <label className="label">
           <span className="label-text">추가할 프로젝트 선택</span>

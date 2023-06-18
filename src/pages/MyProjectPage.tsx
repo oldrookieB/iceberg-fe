@@ -5,9 +5,12 @@ import Header from "../components/ui/Header";
 
 import { getRepositoryData } from "../api/github";
 import { useGithubAuthStore } from "../store/auth";
+import { ProjectType } from "../types/project.type";
 
 const MyProjectPage = () => {
-  const [repositoryDatas, setRepositoryDatas] = useState([]);
+  const [repositoryDatas, setRepositoryDatas] = useState<ProjectType[] | null>(
+    null
+  );
   const githubAuthStore = useGithubAuthStore();
 
   useEffect(() => {
@@ -30,13 +33,15 @@ const MyProjectPage = () => {
         <label className="label">
           <span className="label-text">내 프로젝트</span>
         </label>
-        <div className="py-4 flex flex-wrap justify-between items-center w-full max-w-[384px] lg:max-w-4xl xl:max-w-7xl gap-6 after:content-[''] after:basis-[384px]  ">
-          {repositoryDatas.map((repository) => (
+        <div className="py-4 flex flex-wrap justify-between items-center w-screen max-w-[384px] lg:max-w-4xl xl:max-w-7xl gap-6 after:content-[''] after:basis-[384px]  ">
+          {repositoryDatas?.map((repository) => (
             <Card
               key={repository.id}
               id={repository.id}
-              title={repository.name}
+              userName={repository.userName}
+              title={repository.title}
               description={repository.description}
+              techStacks={repository.techStacks}
             />
           ))}
         </div>
