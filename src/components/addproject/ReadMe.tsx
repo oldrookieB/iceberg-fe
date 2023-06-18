@@ -14,15 +14,19 @@ interface ReadMeProps {
 const ReadMe = (props: ReadMeProps) => {
   const githubAuthStore = useGithubAuthStore();
 
-  const [readme, setReadme] = useState("");
+  const [readme, setReadme] = useState<string | null>("");
 
   const getReadMe = async () => {
-    const data = await axios.get(
-      `https://api.github.com/repos/${githubAuthStore.userName}/${props.selectedRepository}/readme`
-    );
+    try {
+      const data = await axios.get(
+        `https://api.github.com/repos/${githubAuthStore.userName}/${props.selectedRepository}/readme`
+      );
 
-    // readme 데이터는 base64로 인코딩 되어있으므로 , 디코딩해줍니다.
-    setReadme(Base64.decode(data.data.content));
+      // readme 데이터는 base64로 인코딩 되어있으므로 , 디코딩해줍니다.
+      setReadme(Base64.decode(data.data.content));
+    } catch (e) {
+      setReadme(null);
+    }
   };
 
   useEffect(() => {
@@ -31,7 +35,8 @@ const ReadMe = (props: ReadMeProps) => {
 
   return (
     <>
-      {!readme && <ReadMeSkeleton />}
+      {readme == "" && <ReadMeSkeleton />}
+      {readme == null && <p>Readme가 없습니다.</p>}
       {readme && (
         <div className="w-full markdown-body">
           <label className="label">

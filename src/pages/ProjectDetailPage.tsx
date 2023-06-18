@@ -12,7 +12,7 @@ const ProjectDetailPage = () => {
   return (
     <Layout>
       <Header />
-      <section className="flex flex-col items-center w-1/2 gap-4">
+      <section className="flex flex-col items-center  gap-4">
         <h1 className="text-6xl font-bold ">{DUMMY.PROJECT_NAME}</h1>
         <div className="flex gap-4">
           <p>STAR {DUMMY.STAR}</p>

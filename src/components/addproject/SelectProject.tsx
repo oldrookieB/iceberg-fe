@@ -8,8 +8,6 @@ interface SelectProjectProps {
 }
 
 const SelectProject = (props: SelectProjectProps) => {
-
-
   return (
     <section className="flex flex-col gap-6 items-center w-full max-w-[382px] lg:max-w-4xl xl:max-w-7xl py-4">
       <div className="flex flex-col">
@@ -22,6 +20,9 @@ const SelectProject = (props: SelectProjectProps) => {
             [1, 2, 3, 4, 5, 6].map((_, index) => (
               <ProjectCardSkeleton key={index} />
             ))}
+          {props.repositoryDatas && props.repositoryDatas.length == 0 && (
+            <p>데이터가 없습니다.</p>
+          )}
           {props.repositoryDatas?.map((repositoryData: any, index: number) => (
             <ProjectCard
               index={index}

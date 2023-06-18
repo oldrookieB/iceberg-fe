@@ -15,7 +15,7 @@ const AuthRoute = (props: AuthRouteProps) => {
 
   // 로그인 되어 있는데 로그인 관련 페이지로 접근한 경우 프로필로 리디렉션
   if (isLogin && props.auth) {
-    return <Navigate to="/profile"></Navigate>;
+    return <Navigate to="/main"></Navigate>;
   }
 
   return <Outlet />;

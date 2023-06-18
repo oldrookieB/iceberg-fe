@@ -1,10 +1,10 @@
 import React from "react";
 
-const ProjectCardSkeleton = () => {
+const CardSkeleton = () => {
   return (
     <div
       role="status"
-      className="  shadow-xl w-96 h-48 p-4 border border-gray-200 rounded-2xl  animate-pulse  dark:border-gray-700"
+      className="  shadow-xl w-96 h-64 p-4 border border-gray-200 rounded-2xl  animate-pulse  dark:border-gray-700"
     >
       <div className="flex items-center justify-center h-10 mb-4 bg-gray-300 rounded dark:bg-gray-700">
         <svg
@@ -27,4 +27,4 @@ const ProjectCardSkeleton = () => {
   );
 };
 
-export default ProjectCardSkeleton;
+export default CardSkeleton;

@@ -5,7 +5,7 @@ const ProjectCard = (props: any) => {
     props.selectRepository(props.name);
   };
   return (
-    <label className="h-40 border shadow-xl cursor-pointer shrink-0 card w-96 bg-base-100">
+    <label className=" h-48 border shadow-xl cursor-pointer shrink-0 card w-96 bg-base-100">
       <div className="card-body">
         <h2 className="card-title">{props.name}</h2>
         <p>{props.description}</p>

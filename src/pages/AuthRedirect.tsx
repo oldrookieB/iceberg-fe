@@ -41,10 +41,12 @@ const AuthRedirect = () => {
         authStore.setLoginType?.("google");
         authStore.setUserName(userName);
         authStore.setLogin();
-        navigate("/profile", { replace: true });
+        navigate("/main", { replace: true });
       } catch (e) {
         console.log(e);
       }
+    } else {
+      navigate("/", { replace: true });
     }
   };
 
@@ -88,10 +90,12 @@ const AuthRedirect = () => {
         githubAuthStore.setUserName(userName);
         githubAuthStore.setLogin();
         githubAuthStore.setUserImage?.(userImage);
-        navigate("/profile", { replace: true });
+        navigate("/main", { replace: true });
       } catch (e) {
         console.log(e);
       }
+    } else {
+      navigate("/", { replace: true });
     }
   };
 
