@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <header className="navbar bg-base-100 w-screen px-4">
       <div className="flex-1">
-        <Link to="/main" className="btn btn-ghost normal-case text-2xl">
-          Iceberg
+        <Link to="/main" className="btn btn-ghost w-32">
+          <img src="/img/iceberg_text.png" />
         </Link>
       </div>
       <div className="flex-none">

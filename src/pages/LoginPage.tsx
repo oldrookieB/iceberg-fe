@@ -13,8 +13,8 @@ const LoginPage = () => {
 
   return (
     <Layout evenly>
-      <header className="flex justify-center text-6xl font-bold">
-        Iceberg
+      <header className="flex justify-center w-60 ">
+        <img src="/img/iceberg_logo.png" />
       </header>
 
       {/* 자체 로그인 */}

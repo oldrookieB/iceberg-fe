@@ -26,7 +26,9 @@ const Card = (props: ProjectType) => {
         className="flex item-center justify-center w-full h-16"
         style={{ backgroundColor: cardColor.bgColor }}
       >
-        <h2 className="card-title">{props.title}</h2>
+        <h2 className="card-title" style={{ color: cardColor.txtColor }}>
+          {props.title}
+        </h2>
       </div>
       <div className="flex flex-col card-body justify-between">
         <div>
