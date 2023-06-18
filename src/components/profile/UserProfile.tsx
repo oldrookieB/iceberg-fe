@@ -11,7 +11,7 @@ const UserProfile = () => {
   };
 
   return (
-    <section className="flex flex-col w-full h-full gap-4">
+    <section className="flex flex-col w-full  gap-4">
       <DisabledInput label="아이디" defaultValue={authStore.userName} />
 
       {githubAuthStore.isLogin ? (

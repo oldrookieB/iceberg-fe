@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGithubAuthStore } from "../../store/auth";
 import { Base64 } from "js-base64";
+import ReadMeSkeleton from "./ReadMeSkeleton";
 
 interface ReadMeProps {
   selectedRepository: string;
@@ -29,16 +30,21 @@ const ReadMe = (props: ReadMeProps) => {
   }, []);
 
   return (
-    <div className="w-full markdown-body">
-      <label className="label">
-        <span className="label-text">프로젝트 소개</span>
-      </label>
-      <ReactMarkdown
-        rehypePlugins={[rehypeRaw]}
-        children={readme}
-        remarkPlugins={[remarkGfm]}
-      />
-    </div>
+    <>
+      {!readme && <ReadMeSkeleton />}
+      {readme && (
+        <div className="w-full markdown-body">
+          <label className="label">
+            <span className="label-text">프로젝트 소개</span>
+          </label>
+          <ReactMarkdown
+            rehypePlugins={[rehypeRaw]}
+            children={readme}
+            remarkPlugins={[remarkGfm]}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

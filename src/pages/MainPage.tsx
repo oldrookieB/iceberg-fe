@@ -7,8 +7,6 @@ import { getRepositoryData } from '../api/github';
 import { useGithubAuthStore } from "../store/auth";
 import { Link } from 'react-router-dom';
 
-
-
 const MainPage = () => {
   const [repositoryDatas, setRepositoryDatas] = useState([]);
   const [searchResult, setSearchResult] = useState([]); //필터링 된 검색 결과 저장하기 위한 상태 설정

@@ -1,9 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const LoginHandler = () => {};
-
   return (
     <header className="navbar bg-base-100 w-screen px-4">
       <div className="flex-1">
@@ -13,7 +10,9 @@ const Header = () => {
       </div>
       <div className="flex-none">
         <button className="btn btn-ghost">로그아웃</button>
-        <button className="btn btn-ghost">프로젝트</button>
+        <Link to="/main" className="btn btn-ghost">
+          프로젝트
+        </Link>
         <Link to="/profile" className="btn btn-ghost">
           프로필
         </Link>

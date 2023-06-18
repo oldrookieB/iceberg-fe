@@ -1,12 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { Base64 } from "js-base64";
 import { useGithubAuthStore } from "../store/auth";
 
-import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import Header from "../components/ui/Header";
+import Layout from "../components/ui/Layout";
 import SelectProject from "../components/addproject/SelectProject";
 import ConfirmProject from "../components/addproject/ConfirmProject";
 import Progress from "../components/addproject/Progress";
@@ -16,7 +14,7 @@ import { getRepositoryData } from "../api/github";
 const AddProjectPage = () => {
   const [progress, setProgress] = useState(0);
   // TODO: 가져온 레포지토리 정보 중 사용할 데이터 정해지면 타입 설정하기
-  const [repositoryDatas, setRepositoryDatas] = useState<any>([]);
+  const [repositoryDatas, setRepositoryDatas] = useState<any>(null);
   const [selectedRepository, setSelectedRepository] = useState("");
 
   const githubAuthStore = useGithubAuthStore();
@@ -33,7 +31,7 @@ const AddProjectPage = () => {
 
   // 유저의 레포지토리 리스트를 가져옵니다.
   useEffect(() => {
-    setRepository();
+    setTimeout(setRepository, 500);
   }, []);
 
   // 프로젝트 선택 단계에서 프로젝트 추가 단계로 넘어갑니다.
@@ -47,7 +45,7 @@ const AddProjectPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen">
+    <Layout>
       <Header />
 
       <Progress progress={progress} />
@@ -68,7 +66,7 @@ const AddProjectPage = () => {
           selectedRepository={selectedRepository}
         />
       )}
-    </div>
+    </Layout>
   );
 };
 
