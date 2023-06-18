@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 interface CardProps {
   title: string;
   description: string;
-  className? : string;
 }
 
 
