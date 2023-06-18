@@ -4,7 +4,9 @@ const Header = () => {
   return (
     <header className="navbar bg-base-100 w-screen px-4">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-2xl">Iceberg</a>
+        <Link to="/main" className="btn btn-ghost normal-case text-2xl">
+          Iceberg
+        </Link>
       </div>
       <div className="flex-none">
         <button className="btn btn-ghost">로그아웃</button>

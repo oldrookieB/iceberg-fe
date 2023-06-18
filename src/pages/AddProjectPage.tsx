@@ -10,6 +10,7 @@ import ConfirmProject from "../components/addproject/ConfirmProject";
 import Progress from "../components/addproject/Progress";
 import { getRepositoryData } from "../api/github";
 
+
 const AddProjectPage = () => {
   const [progress, setProgress] = useState(0);
   // TODO: 가져온 레포지토리 정보 중 사용할 데이터 정해지면 타입 설정하기

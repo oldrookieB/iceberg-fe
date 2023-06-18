@@ -1,93 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/ui/Layout';
 import Header from '../components/ui/Header';
 import SearchBar from '../components/ui/SearchBar';
 import Card from '../components/list/Card';
-import TechButton from '../components/ui/TechButton';
+import { getRepositoryData } from '../api/github';
+import { useGithubAuthStore } from "../store/auth";
+import { Link } from 'react-router-dom';
 
-const MainPage = (props) => {
-    const cardData = [
-        {
-            id: 1,
-            title: "my-awesome-project",
-            description: "This is an amazing project.",
-          },
-          {
-            id: 2,
-            title: "react-app",
-            description: "A React application for frontend development.",
-          },
-          {
-            id: 3,
-            title: "python-scripts",
-            description: "Collection of useful Python scripts.",
-          },
-          {
-            id: 4,
-            title: "portfolio-website",
-            description: "My personal portfolio website.",
-          },
-          {
-            id: 5,
-            title: "node-api",
-            description: "A Node.js API server for backend development.",
-          },
-    ];
+const MainPage = () => {
+  const [repositoryDatas, setRepositoryDatas] = useState([]);
+  const [searchResult, setSearchResult] = useState([]); //필터링 된 검색 결과 저장하기 위한 상태 설정
+  const githubAuthStore = useGithubAuthStore();
 
-    const TechStacks = [
-        { title: "React", bgColor: "#61dafb", txtColor: "black" },
-        { title: "Python", bgColor: "#3676AB", txtColor: "white" },
-        { title: "JavaScript", bgColor: "#f7df1e", txtColor: "black" },
-        { title: "html", bgColor: "#e34f26", txtColor: "white" },
-        { title: "Css", bgColor: "#264de4", txtColor: "white" },
-        { title: "node.js", bgColor: "#339933", txtColor: "white" },
-        { title: "java", bgColor: "#007396", txtColor: "white" },
-        { title: "ruby", bgColor: "#cc342d", txtColor: "white" },
-        { title: "angular", bgColor: "#dd0031", txtColor: "white" },
-        { title: "Vue.js", bgColor: "#4fc08d", txtColor: "white" },
-        { title: "c#", bgColor: "#68217a", txtColor: "white" }
-    ]
-    
-    return (
-       <Layout>
-            <Header/>
-            <div className='mt-12' />
-            <SearchBar/>
-            <div className='mt-5'/>
-            <a className='text-lg font-medium mx-5'>Likes</a>
-            <div className='flex flex-wrap justify-start ml-2 mt-3'>
-              {cardData.map((card) => (
-                <Card
-                    key={card.id}
-                    id={card.id}
-                    title={card.title}
-                    description={card.description}
-                    />
-              ))}
-            </div>
-            <a className='text-lg font-medium mx-5'>TechStack</a>
-            <div className='flex flex-row flex-wrap mx-10 mt-3'>
-                {TechStacks.map((tech, index) => (
-                    <TechButton
-                        key={index}
-                        title={tech.title}
-                        bgColor={tech.bgColor}
-                        txtColor={tech.txtColor}
-                    />
-            ))}
-            </div>
-            <div className='flex flex-wrap justify-start ml-2 mt-5'>
-            {cardData.map((card) => (
-                <Card
-                    key={card.id}
-                    id={card.id}
-                    title={card.title}
-                    description={card.description}
-                    />
-              ))}
-            </div>
-       </Layout>
+  useEffect(() => {
+    const fetchRepositoryData = async () => {
+      try {
+        const response = await getRepositoryData(githubAuthStore.userName);
+        setRepositoryDatas(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRepositoryData();
+  }, []);
+
+  const handleSearch = (searchQuery: string) => {
+    const filteredRepositories = repositoryDatas.filter((repository) =>
+      repository.name.toLowerCase().includes(searchQuery.toLowerCase()) //검색어를 기준으로 레포지토리 필터링
     );
+    setSearchResult(filteredRepositories); //필터링 된 검색결과 설정
+  };
+
+  return (
+    <Layout>
+      <Header />
+      <div className='mt-12' />
+      <SearchBar onSearch={handleSearch} />
+      <div className='mt-5' />
+
+      <div className='flex flex-wrap justify-between'>
+        {searchResult.length > 0 ? (
+          searchResult.map((repository) => (
+            <Link to={`/project/${repository.id}`} key={repository.id}>
+              <Card title={repository.name} description={repository.description} />
+            </Link>
+          ))
+        ) : ( //검색결과가 없을 경우 모든 레포지토리 보여주기
+          repositoryDatas.map((repository) => (
+            <Link to={`/project/${repository.id}`} key={repository.id}>
+              <Card title={repository.name} description={repository.description} />
+            </Link>
+          ))
+        )}
+      </div>
+    </Layout>
+  );
 };
 
 export default MainPage;
