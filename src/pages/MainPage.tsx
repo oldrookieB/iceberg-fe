@@ -1,13 +1,11 @@
+import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import Layout from "../components/ui/Layout";
 import Header from "../components/ui/Header";
 import SearchBar from "../components/ui/SearchBar";
 import Card from "../components/list/Card";
-import { getRepositoryData } from "../api/github";
-import { useGithubAuthStore } from "../store/auth";
-import { Link } from "react-router-dom";
 import CardSkeleton from "../components/list/CardSkeleton";
-import { MOCKPROJECTS } from "../mocks/projects.mock";
 import { ProjectType } from "../types/project.type";
 
 const MainPage = () => {
@@ -19,9 +17,9 @@ const MainPage = () => {
   useEffect(() => {
     const fetchRepositoryData = async () => {
       try {
-        // const response = await getRepositoryData(githubAuthStore.userName);
+        const response = await axios.get("API UR 자리");
         // setRepositoryDatas(response.data);
-        setRepositoryDatas(MOCKPROJECTS);
+        console.log(response.data); // 데이터 들어오는지 확인
       } catch (error) {
         console.log(error);
       }
