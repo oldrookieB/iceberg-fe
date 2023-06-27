@@ -20,6 +20,7 @@
 - zustand
 
 ## 데모 영상
-![GIFMaker_me](https://github.com/oldrookieB/iceberg-fe/assets/101182523/f1fb9cc6-b993-4d86-8d46-bcb4fa1131a1)
+![GIFMaker_me (1)](https://github.com/oldrookieB/iceberg-fe/assets/101182523/b10bb94d-4f1c-4815-bffe-845280d84c2a)
+
 
 
