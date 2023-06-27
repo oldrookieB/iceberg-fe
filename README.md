@@ -1,6 +1,7 @@
+![iceberg_logo2](https://github.com/oldrookieB/iceberg-fe/assets/101182523/f06c28fa-2a04-4200-a3ae-d798541babdb)
 # Iceberg Project
 ### SW프로젝트 올드루키B팀 프론트엔드
-> iceberg - 프로젝트 아카이빙과 목업
+> iceberg - 프로젝트 아카이빙
 
 **주요 기능** <br/>
 `Github OAuth를 이용한 인증 제공` <br/>
@@ -17,3 +18,8 @@
 - react-hook-form
 - react-markdown
 - zustand
+
+## 데모 영상
+![GIFMaker_me](https://github.com/oldrookieB/iceberg-fe/assets/101182523/f1fb9cc6-b993-4d86-8d46-bcb4fa1131a1)
+
+
